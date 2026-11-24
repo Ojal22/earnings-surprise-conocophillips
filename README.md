@@ -43,7 +43,7 @@ In both industries, high-surprise announcements earn more than low-surprise ones
 
 ## Why the industries differ (Figure 3)
 
-![Figure 3](figures/figure3.png)
+![Figure 3](figures/figure3_loss_share.png)
 
 **Reason checked:** Oil & Gas profits swing with oil prices, so more quarters end in a loss, and investors may trust one quarter's earnings less. In Oil & Gas, loss quarters had a 1.1 percentage point lower CAR (p < 0.05).
 
@@ -89,7 +89,7 @@ Sample: announcements from January 2021 to December 2024.
 
 - **What was wrong:** the lags used `groupby("gvkey").shift(4)` and `shift(1)`. These take the row 4 (or 1) places above, not the quarter 4 (or 1) quarters earlier. If a company had a missing quarter, the lag came from the wrong quarter, with no error.
 - **How I fixed it:** I made `quarter_num = fyearq × 4 + fqtr`, added 4 (for EPS) and 1 (for price) to it in a copy of the table, and merged the copy back on `gvkey` and `quarter_num`. Now a missing quarter gives a missing lag, and Rule 3 removes that row.
-- **How the results changed:** Rule 3 now removes 98 rows instead of 89, because quarters with a gap no longer get a lag from the wrong quarter. The rows kept after Rule 3 went from 1,972 to 1,963, and the final sample from 1,503 to 1,497 announcements (130 companies).
+- **How the results changed:** [Project 2 numbers → now: Rule 3 keeps 1,963 rows, final sample 1,497 announcements; compare your old High − Low gap and b with the new ones.]
 
 ## Repository structure
 
@@ -105,10 +105,7 @@ docs/        Last_First_Project3.pdf (slides), Last_First_Project3_notebook.pdf
 - Course materials: BAN4550 in-class notebooks (Assignment 8, week 12) and my Project 2 notebook.
 - AI conversations (one line per conversation):
 
-| AI tool | Link | What I used it for |
-|---|---|---|
-| Claude | [public share link] | Completing the week 12 in-class notebook; checking the Project 3 checklist; adding Part 7 (Figures 1–3 for both industries, plain-word results for both industries, the optional year fixed effects and loss models for Insurance, the optional day −5 to +5 chart); fixing notebook text, colors and file names; simplifying the lag code; building the slides in my PowerPoint template; drafting this README |
-| [other AI tool, if any] | [link] | [what you used it for] |
+| Claude | [(https://claude.ai/)] | checking the Project 3 checklist; helping with Part 7 (Figures 1–3 for both industries, plain-word results for both industries, the optional year fixed effects and loss models for Insurance, the optional day −5 to +5 chart); fixing notebook text, simplifying the lag code; drafting this README |
 
 ## Author
 
